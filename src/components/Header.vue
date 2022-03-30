@@ -25,5 +25,8 @@ export default {
 nav {
   background-color: $color_primary;
   height: 8vh;
+  a {
+    line-height: 8vh;
+  }
 }
 </style>
