@@ -21,12 +21,12 @@ export default {
 figure {
   background-color: $color_primary;
   border-radius: 2.5%;
-  width: 250px;
-  height: 450px;
+  width: $quote_cards;
+  height: 550px;
 
   img {
-    width: 250px;
-    height: 250px;
+    width: $quote_cards;
+    height: $quote_cards;
     border-radius: 5%;
   }
   h3 {

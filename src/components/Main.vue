@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="container">
-      <div class="row pt-5">
+      <div class="row pt-5" v-if="arrayCover.length !== 0">
         <div class="col-12 d-flex justify-content-center flex-wrap">
           <Figure
             v-for="(element, index) in arrayCover"
@@ -11,21 +11,10 @@
             :author="element.genre"
             :year="element.year"
           />
-
-          <!-- <figure class="m-3 text-center">
-            <a href="">
-              <img
-                class="img-fluid p-2"
-                :src="element.poster"
-                :alt="element.title"
-              />
-              <h3 class="p-3">{{ element.title }}</h3>
-              <h4>{{ element.author }}</h4>
-              <h4>{{ element.year }}</h4>
-            </a>
-          </figure> -->
-          <!--  <div class="text-white">{{ arrayCover[0].genre }}</div> -->
         </div>
+      </div>
+      <div class="row" v-else>
+        <div class="col-12"><h1 class="text-white">Loading...</h1></div>
       </div>
     </section>
   </main>
@@ -46,7 +35,7 @@ export default {
     };
   },
   created: function () {
-    this.getApiArtist();
+    setTimeout(this.getApiArtist, 3000);
   },
 
   methods: {
