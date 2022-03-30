@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black">HAeder</div>
+  <div>HAeder</div>
 </template>
 
 <script>
