@@ -2,6 +2,7 @@
   <main>
     <section class="container">
       <div class="row pt-5" v-if="arrayCover.length !== 0">
+        <!-- <div class="row pt-5"> -->
         <div class="col-12 d-flex justify-content-center flex-wrap">
           <Figure
             v-for="(element, index) in arrayCover"
@@ -14,8 +15,8 @@
         </div>
       </div>
       <div class="row" v-else>
+        <!-- <div class="row"> -->
         <div class="col-12 text-center">
-          <!--  -->
           <img
             src="http://media.tenor.com/images/b545eb51805026b335466195bb61f0a4/tenor.gif"
             alt="http://media.tenor.com/images/b545eb51805026b335466195bb61f0a4/tenor.gif"
@@ -51,41 +52,21 @@ export default {
       axios
         .get("https://flynn.boolean.careers/exercises/api/array/music")
         .then((result) => {
+          console.log("la data è", result.data.response.length);
+
+          console.log("la nuava array", result.data.response);
+
           const current = result.data.response.length;
           console.log("indice", current);
           for (let i = 0; i < current; i++) {
-            const coverlistPoster = result.data.response[i].poster;
-            const coverlistTitle = result.data.response[i].title;
-            const coverlistAuthor = result.data.response[i].author;
-            const coverlistGenre = result.data.response[i].genre;
-            const coverlistYear = result.data.response[i].year;
-            this.addObjCover(
-              coverlistPoster,
-              coverlistTitle,
-              coverlistAuthor,
-              coverlistGenre,
-              coverlistYear
-            );
+            console.log("indice", i);
+            this.arrayCover.push(result.data.response[i]);
           }
+          console.log("fine", this.arrayCover);
         })
         .catch((error) => {
           console.log(error);
         });
-    },
-    /**
-     *
-     * Funzione di ottimizzazione per creare un oggeto
-     */
-    addObjCover(poster, title, author, genre, year) {
-      const newArrayCover = {
-        poster: poster,
-        title: title,
-        author: author,
-        genre: genre,
-        year: year,
-      };
-
-      this.arrayCover.push(newArrayCover);
     },
   },
 };
