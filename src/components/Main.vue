@@ -1,21 +1,24 @@
 <template>
   <main>
     <section class="container">
+      <div class="row">
+        <div class="col-12 text-danger text-center">
+          <h1>{{ SerchGenre }}</h1>
+        </div>
+      </div>
       <div class="row pt-5" v-if="arrayCover.length !== 0">
-        <!-- <div class="row pt-5"> -->
         <div class="col-12 d-flex justify-content-center flex-wrap">
           <Figure
-            v-for="(element, index) in arrayCover"
+            v-for="(element, index) in newSerchGenre"
             :key="index"
             :poster="element.poster"
             :title="element.title"
-            :author="element.genre"
+            :author="element.author"
             :year="element.year"
           />
         </div>
       </div>
       <div class="row" v-else>
-        <!-- <div class="row"> -->
         <div class="col-12 text-center">
           <img
             src="http://media.tenor.com/images/b545eb51805026b335466195bb61f0a4/tenor.gif"
@@ -35,38 +38,46 @@ import Figure from "../components/Main/Figure.vue";
 
 export default {
   name: "HomeMain",
+  props: ["SerchGenre"],
   components: {
     Figure,
   },
   data() {
     return {
       arrayCover: [],
+      /*  current: 0, */
     };
   },
   created: function () {
-    setTimeout(this.getApiArtist, 4000);
+    setTimeout(this.getApiArtist, 3500);
   },
 
   methods: {
     getApiArtist() {
+      const self = this;
       axios
         .get("https://flynn.boolean.careers/exercises/api/array/music")
         .then((result) => {
-          console.log("la data è", result.data.response.length);
-
-          console.log("la nuava array", result.data.response);
-
-          const current = result.data.response.length;
-          console.log("indice", current);
-          for (let i = 0; i < current; i++) {
+          const resultLength = result.data.response.length;
+          /* console.log("indice", current); */
+          for (let i = 0; i < resultLength; i++) {
             console.log("indice", i);
-            this.arrayCover.push(result.data.response[i]);
+
+            self.arrayCover.push(result.data.response[i]);
           }
-          console.log("fine", this.arrayCover);
+          console.log("array", self.arrayCover);
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+  },
+  computed: {
+    newSerchGenre() {
+      console.log("funzione main", this.SerchGenre);
+      return this.arrayCover.filter((element) =>
+        element.genre.includes(this.SerchGenre)
+      );
     },
   },
 };
@@ -91,7 +102,7 @@ main {
       color: white;
     }
     h4 {
-      color: gray;
+      color: $brand_tertiary;
     }
   }
 }

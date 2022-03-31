@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
-    <Main />
+    <Header @serchGenre="newSerchGenre" />
+    <Main :SerchGenre="SerchGenre" />
   </div>
 </template>
 
@@ -14,6 +14,18 @@ export default {
   components: {
     Header,
     Main,
+  },
+  data() {
+    return {
+      SerchGenre: "",
+    };
+  },
+  methods: {
+    newSerchGenre(strngToSerch) {
+      console.log("genere selezionato", strngToSerch);
+      this.SerchGenre = strngToSerch;
+      console.log("data serch", this.SerchGenre);
+    },
   },
 };
 </script>
