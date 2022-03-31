@@ -14,7 +14,15 @@
         </div>
       </div>
       <div class="row" v-else>
-        <div class="col-12"><h1 class="text-white">Loading...</h1></div>
+        <div class="col-12 text-center">
+          <!--  -->
+          <img
+            src="http://media.tenor.com/images/b545eb51805026b335466195bb61f0a4/tenor.gif"
+            alt="http://media.tenor.com/images/b545eb51805026b335466195bb61f0a4/tenor.gif"
+            class="transparent momento"
+          />
+          <h1 class="text-white">Loading...</h1>
+        </div>
       </div>
     </section>
   </main>
@@ -35,7 +43,7 @@ export default {
     };
   },
   created: function () {
-    setTimeout(this.getApiArtist, 3000);
+    setTimeout(this.getApiArtist, 4000);
   },
 
   methods: {
@@ -105,5 +113,10 @@ main {
       color: gray;
     }
   }
+}
+.momento {
+  margin: 5rem 0;
+  width: 520px;
+  height: 439px;
 }
 </style>
